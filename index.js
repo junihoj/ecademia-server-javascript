@@ -15,6 +15,7 @@ const app = express();
 
 
 app.use((req, res, next) => {
+    console.log("CLIENT URL", process.env.CLIENT_URL)
     res.setHeader(
       "Access-Control-Allow-Origin",
       `${process.env.CLIENT_URL}`
