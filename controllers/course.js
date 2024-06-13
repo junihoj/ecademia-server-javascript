@@ -549,7 +549,7 @@ export const checkPaid = async(req,res)=>{
                 currency: "NGN",
                 //TODO:CHANGE REDIRECT URL FOR FLUTTER
                 // "http://localhost:8000/api/flw_courseenroll"
-                redirect_url: `http://localhost:3000/flw/${course._id}`,
+                redirect_url: `${process.env.CLIENT_URL}/flw/${course._id}`,
                 meta: {
                     // consumer_id: user._id,
                     consumer_mac: "92a3-912ba-1192a"
