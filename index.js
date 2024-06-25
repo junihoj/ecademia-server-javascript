@@ -2,6 +2,7 @@ import express from 'express';
 import {readdirSync} from 'fs';
 import cors from 'cors';
 import mongoose from 'mongoose';
+import { corsPolicy } from './config/cors';
 // import { Db } from 'mongodb';
 const morgan = require('morgan');
 require("dotenv").config();
@@ -12,7 +13,7 @@ const csrfProtection= csrf({cookie:true});
 
 //create express app
 const app = express();
-
+app.use(corsPolicy);
 //cookie-parser middleware
 
 app.use(cookieParser());
@@ -38,10 +39,9 @@ mongoose.connect(process.env.DATABASE, {
 // 	console.log(err);
 // });
 
-
-
+// app.options("*", corsPolicy)
 //apply middlewares
-app.use(cors());
+
 
 app.use(express.json({limit:'5mb'}));
 

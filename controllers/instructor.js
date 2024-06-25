@@ -9,6 +9,7 @@ import Banks from './response.json'
 const flutterwave = require('flutterwave-node-v3')
 
 const flw = new flutterwave(process.env.FLW_PB_KEY, process.env.FLW_SECRET_KEY)
+console.log("PUBLIC KEY AND SECRET", process.env.FLW_PB_KEY, process.env.FLW_SECRET_KEY)
 const stripe = require('stripe')(process.env.STRIPE_SECRET)
 export const makeInstructor = async (req, res)=>{
    try{

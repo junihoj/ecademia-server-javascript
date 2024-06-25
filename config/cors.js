@@ -1,7 +1,9 @@
 import cors from 'cors';
+require("dotenv").config();
 const whitelist = [`${process.env.CLIENT_URL}`]
+console.log("NODE ENV", process.env.CLIENT_URL, process.env.NODE_ENV)
 export const corsPolicy = cors({
-    origin: function (origin, callback) {
+    origin: process.env.NODE_ENV !== "production"? "*" :function (origin, callback) {
         if (whitelist.indexOf(origin) !== -1 || !origin) {
           callback(null, true)
         } else {
