@@ -108,6 +108,14 @@ export const csrfController = (req, res) => {
     // }
   
     // return res.send(generatedToken);
+    //SIGNED
+    // const generatedToken = generateToken(req, res, true);
+
+    // res.cookie(csrfTokenCookie, generatedToken, {
+    //     ...cookieOptions,
+    //     httpOnly: true,
+    // });
+    // res.end('Request was successful.');
 }
 
 

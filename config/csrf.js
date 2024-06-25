@@ -2,6 +2,10 @@
 import { doubleCsrf } from 'csrf-csrf';
 import { randomBytes } from 'node:crypto';
 
+const csrfCookieName = process.env.CSRF_TOKEN_COOKIE ?? 'X-Csrf-Token';
+function tokenExtractor(req) {
+    return req.signedCookies[csrfCookieName];
+}
 const csrfSecret = randomBytes(20).toString('hex');
 
 const cookieOptions = {
@@ -9,6 +13,7 @@ const cookieOptions = {
   secure: process.env.NODE_ENV === 'production',
   sameSite: 'lax',
   path: '/api',
+  signed: true,
 };
 
 export const { doubleCsrfProtection, generateToken } = doubleCsrf({
@@ -18,4 +23,5 @@ export const { doubleCsrfProtection, generateToken } = doubleCsrf({
   getSecret: () => csrfSecret,
   cookieName: 'some-random-cookie',
   cookieOptions,
+  tokenExtractor:tokenExtractor
 });
