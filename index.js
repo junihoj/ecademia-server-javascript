@@ -13,6 +13,7 @@ const csrfProtection= csrf({cookie:true});
 
 //create express app
 const app = express();
+app.options('*', corsPolicy)
 app.use(corsPolicy);
 //cookie-parser middleware
 
@@ -57,7 +58,10 @@ readdirSync('./routes').map((r)=>
 // });
 
 
-
+app.get("/healthz", (req, res) => {
+    console.log("health check is processed");
+    return res.status(204).send();
+});
 const port = process.env.PORT || 8000;
 
 app.listen(port, ()=>console.log(`Server is running on port ${port}`));
