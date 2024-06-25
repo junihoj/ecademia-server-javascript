@@ -1,4 +1,4 @@
-import { json } from 'body-parser';
+
 import User from '../models/user'
 import { hashPassword, comparePassword } from '../utils/auth'
 
@@ -7,6 +7,7 @@ import AWS from 'aws-sdk'
 import { nanoid } from 'nanoid'
 import Mailer from '../utils/mailer';
 import { mailCustomizer } from '../utils/mailer/mailCustomizer';
+// import { generateToken } from '../config/csrf';
 
 const awsConfig = {
     accessKeyId: process.env.AWS_ACCESS_KEY_ID,
@@ -99,6 +100,22 @@ export const logout = (req, res) => {
 export const csrfController = (req, res) => {
 
     res.send({ getCsrfToken: req.csrfToken() });
+    // const generatedToken = generateToken(req, res);
+    // res.set('Content-Type', 'text/plain');
+  
+    // if (!generatedToken) {
+    //   return res.status(500).send('Cannot generate the requested content.');
+    // }
+  
+    // return res.send(generatedToken);
+    //SIGNED
+    // const generatedToken = generateToken(req, res, true);
+
+    // res.cookie(csrfTokenCookie, generatedToken, {
+    //     ...cookieOptions,
+    //     httpOnly: true,
+    // });
+    // res.end('Request was successful.');
 }
 
 
