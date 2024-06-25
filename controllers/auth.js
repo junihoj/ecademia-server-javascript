@@ -1,4 +1,4 @@
-import { json } from 'body-parser';
+
 import User from '../models/user'
 import { hashPassword, comparePassword } from '../utils/auth'
 
@@ -7,7 +7,7 @@ import AWS from 'aws-sdk'
 import { nanoid } from 'nanoid'
 import Mailer from '../utils/mailer';
 import { mailCustomizer } from '../utils/mailer/mailCustomizer';
-import { generateToken } from '../config/csrf';
+// import { generateToken } from '../config/csrf';
 
 const awsConfig = {
     accessKeyId: process.env.AWS_ACCESS_KEY_ID,

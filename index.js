@@ -18,7 +18,7 @@ app.use(corsPolicy);
 //cookie-parser middleware
 
 app.use(cookieParser());
-app.use(csrfProtection);
+// app.use(csrfProtection);
 
 //Database
 mongoose.connect(process.env.DATABASE, {
